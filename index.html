@@ -1,0 +1,441 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GeoDash Lite — Download</title>
+<meta name="theme-color" content="#090d19">
+<meta name="description" content="Download GeoDash Lite for Windows.">
+
+<style>
+:root {
+    --bg: #090d19;
+    --panel: #111a2d;
+    --cyan: #00eaff;
+    --purple: #a855f7;
+    --text: #f4f7ff;
+    --muted: #9ba9c4;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(ellipse at 50% 20%, #182e50 0%, transparent 55%),
+        var(--bg);
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: .13;
+    background-image:
+        linear-gradient(#344b6b 1px, transparent 1px),
+        linear-gradient(90deg, #344b6b 1px, transparent 1px);
+    background-size: 45px 45px;
+}
+
+nav {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 8%;
+    border-bottom: 1px solid #ffffff12;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--cyan);
+}
+
+nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 25px;
+}
+
+nav a:hover {
+    color: var(--cyan);
+}
+
+main {
+    position: relative;
+    z-index: 1;
+    width: min(900px, 90%);
+    margin: auto;
+    padding: 95px 0 65px;
+    text-align: center;
+}
+
+.cube {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 35px;
+    background: linear-gradient(135deg, #00eaff, #2776ff);
+    border: 5px solid white;
+    border-radius: 12px;
+    box-shadow: 0 0 35px #00eaff80;
+    transform: rotate(8deg);
+    position: relative;
+}
+
+.cube::before,
+.cube::after {
+    content: "";
+    position: absolute;
+    width: 13px;
+    height: 17px;
+    top: 27px;
+    background: #09152b;
+    border-radius: 3px;
+}
+
+.cube::before { left: 20px; }
+.cube::after { right: 20px; }
+
+.cube .mouth {
+    position: absolute;
+    width: 38px;
+    height: 8px;
+    border-bottom: 5px solid #09152b;
+    bottom: 19px;
+    left: 26px;
+}
+
+h1 {
+    font-size: clamp(42px, 8vw, 76px);
+    font-weight: 1000;
+    letter-spacing: -3px;
+    line-height: 1.05;
+}
+
+h1 span {
+    color: var(--cyan);
+    text-shadow: 0 0 25px #00eaff55;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 18px;
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+.download-card {
+    max-width: 510px;
+    margin: 45px auto 0;
+    padding: 30px;
+    background: linear-gradient(145deg, #16243d, #10192b);
+    border: 1px solid #ffffff18;
+    border-radius: 18px;
+    box-shadow: 0 15px 60px #0005;
+}
+
+.windows-icon {
+    font-size: 35px;
+    margin-bottom: 13px;
+}
+
+.download-card h2 {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.version {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 24px;
+}
+
+.download-button {
+    display: block;
+    width: 100%;
+    padding: 19px;
+    border-radius: 10px;
+    background: linear-gradient(100deg, #00cfe9, #347dff);
+    color: #061323;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 17px;
+    transition: .2s;
+    box-shadow: 0 5px 25px #00cfff35;
+}
+
+.download-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 35px #00cfff70;
+}
+
+.download-button.disabled {
+    opacity: .5;
+    pointer-events: none;
+}
+
+.status {
+    margin-top: 16px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.status.error {
+    color: #ff7777;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 55px;
+}
+
+.feature {
+    padding: 23px 12px;
+    background: #ffffff08;
+    border: 1px solid #ffffff12;
+    border-radius: 12px;
+}
+
+.feature .emoji {
+    font-size: 25px;
+    margin-bottom: 12px;
+}
+
+.feature h3 {
+    font-size: 15px;
+    margin-bottom: 7px;
+}
+
+.feature p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.install {
+    max-width: 600px;
+    margin: 65px auto 0;
+    text-align: left;
+}
+
+.install h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.step {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    margin: 17px 0;
+    color: var(--muted);
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.number {
+    min-width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    color: var(--cyan);
+    background: #00eaff15;
+    font-weight: bold;
+}
+
+footer {
+    position: relative;
+    z-index: 1;
+    padding: 25px;
+    border-top: 1px solid #ffffff12;
+    text-align: center;
+    color: #71809c;
+    font-size: 12px;
+}
+
+footer a {
+    color: var(--cyan);
+    text-decoration: none;
+}
+
+@media(max-width:600px) {
+    nav { padding: 18px 5%; }
+    nav a { margin-left: 12px; font-size: 12px; }
+    main { padding-top: 65px; }
+    .features { grid-template-columns: 1fr; }
+    .download-card { padding: 23px; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">GEO<span>DASH</span> LITE</div>
+    <div>
+        <a href="#download">Download</a>
+        <a href="#install">How to install</a>
+        <a href="https://github.com/x9f-2p8q-m7v-1b5k-6z4w-3h8j-0n/fan-made-geodash-lite-for-windows" target="_blank">GitHub</a>
+    </div>
+</nav>
+
+<main>
+
+    <div class="cube">
+        <div class="mouth"></div>
+    </div>
+
+    <h1>GEO<span>DASH</span><br>LITE</h1>
+
+    <p class="subtitle">
+        Ready to jump, fly and dodge?<br>
+        Get GeoDash Lite for Windows.
+    </p>
+
+    <section class="download-card" id="download">
+        <div class="windows-icon">🖥️</div>
+        <h2>Windows Edition</h2>
+        <p class="version" id="version">Checking latest version...</p>
+
+        <a class="download-button disabled" id="downloadButton" href="#">
+            LOADING DOWNLOAD...
+        </a>
+
+        <p class="status" id="status">Connecting to GitHub Releases...</p>
+    </section>
+
+    <section class="features">
+        <div class="feature">
+            <div class="emoji">⚡</div>
+            <h3>Fast Download</h3>
+            <p>Download directly from GitHub Releases.</p>
+        </div>
+
+        <div class="feature">
+            <div class="emoji">🎮</div>
+            <h3>Windows Support</h3>
+            <p>Get the Windows edition of GeoDash Lite.</p>
+        </div>
+
+        <div class="feature">
+            <div class="emoji">🔄</div>
+            <h3>Latest Version</h3>
+            <p>Automatically checks your latest stable release.</p>
+        </div>
+    </section>
+
+    <section class="install" id="install">
+        <h2>How to install</h2>
+
+        <div class="step">
+            <div class="number">1</div>
+            <p>Click the Download for Windows button above.</p>
+        </div>
+
+        <div class="step">
+            <div class="number">2</div>
+            <p>Wait for the ZIP file to finish downloading.</p>
+        </div>
+
+        <div class="step">
+            <div class="number">3</div>
+            <p>Right-click the downloaded ZIP and choose Extract All.</p>
+        </div>
+
+        <div class="step">
+            <div class="number">4</div>
+            <p>Open the extracted folder and follow the included instructions to launch the game.</p>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>GeoDash Lite · Fan-made project</p>
+    <p style="margin-top:8px">
+        <a href="https://github.com/x9f-2p8q-m7v-1b5k-6z4w-3h8j-0n/fan-made-geodash-lite-for-windows/releases">
+            View all releases on GitHub
+        </a>
+    </p>
+    <p style="margin-top:12px">
+        Not affiliated with or endorsed by the creators of Geometry Dash.
+    </p>
+</footer>
+
+<script>
+const OWNER = "x9f-2p8q-m7v-1b5k-6z4w-3h8j-0n";
+const REPO = "fan-made-geodash-lite-for-windows";
+
+const API = `https://api.github.com/repos/${OWNER}/${REPO}/releases/latest`;
+
+const button = document.getElementById("downloadButton");
+const version = document.getElementById("version");
+const status = document.getElementById("status");
+
+async function loadRelease() {
+    try {
+        const response = await fetch(API);
+
+        if (!response.ok) {
+            throw new Error("GitHub could not find the latest release.");
+        }
+
+        const release = await response.json();
+
+        const zip = release.assets.find(asset =>
+            asset.name.toLowerCase().endsWith(".zip")
+        );
+
+        if (!zip) {
+            throw new Error("No ZIP file was found in this release.");
+        }
+
+        version.textContent = `Latest version: ${release.tag_name}`;
+
+        button.href = zip.browser_download_url;
+        button.download = zip.name;
+        button.textContent = "⬇ DOWNLOAD FOR WINDOWS";
+        button.classList.remove("disabled");
+
+        status.textContent = `${zip.name} · ${(zip.size / 1024 / 1024).toFixed(1)} MB`;
+        status.classList.remove("error");
+
+    } catch (error) {
+        console.error(error);
+
+        version.textContent = "Download currently unavailable";
+
+        button.href = `https://github.com/${OWNER}/${REPO}/releases`;
+        button.textContent = "VIEW RELEASES ON GITHUB";
+        button.classList.remove("disabled");
+
+        status.textContent = error.message;
+        status.classList.add("error");
+    }
+}
+
+loadRelease();
+</script>
+
+</body>
+</html>
+```
